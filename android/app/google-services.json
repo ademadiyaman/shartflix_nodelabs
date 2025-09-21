@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "529858607756",
+    "project_id": "shartflix-3ef68",
+    "storage_bucket": "shartflix-3ef68.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529858607756:android:fb27ebce618962a79059a9",
+        "android_client_info": {
+          "package_name": "com.nodelabs_jr_case.jr_case_boilerplate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529858607756-nefpiaj4p6mgfutt0c8qmsrcbbtkr5n5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nodelabs_jr_case.jr_case_boilerplate",
+            "certificate_hash": "ba1fb79afe95be9d4738b8938152dd2f9b02ab47"
+          }
+        },
+        {
+          "client_id": "529858607756-um922m7s6ebig47kpi2ll67s9g9ab0de.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0WOmvyQNQ66VTR5D1BCIK7tv4lJ2bPSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529858607756-um922m7s6ebig47kpi2ll67s9g9ab0de.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
