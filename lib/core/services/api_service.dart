@@ -27,7 +27,7 @@ class ApiService {
         final data = response.data["data"];
         print("Google Login response: ${response.data}");
 
-        // JWT token'i kaydet
+        // token'i kaydet
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString("token", data["token"]);
 
@@ -69,7 +69,6 @@ class ApiService {
 
       print("Movies response: ${response.data}");
 
-      // 👇 doğru path: data["data"]["movies"]
       final data = response.data["data"]?["movies"] as List<dynamic>?;
 
       if (data == null) return [];
@@ -164,7 +163,7 @@ class ApiService {
       );
 
       if (response.statusCode == 200) {
-        // ✅ doğru path: response.data["data"]["photoUrl"]
+
         final photoUrl = response.data["data"]?["photoUrl"];
 
         if (photoUrl != null && photoUrl is String) {
@@ -193,7 +192,7 @@ class ApiService {
       );
 
       if (response.statusCode == 200) {
-        final data = response.data["data"]; // 👈 sadece "data" kısmını al
+        final data = response.data["data"];
         print("Login response: ${response.data}");
         return {
           "id": data["id"],
@@ -223,7 +222,7 @@ class ApiService {
         },
       );
 
-      print("Register response: ${response.data}"); // 👈 backend yanıtını görmek için
+      print("Register response: ${response.data}");
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         return response.data;
@@ -231,7 +230,7 @@ class ApiService {
         throw Exception("Register failed: ${response.statusCode}");
       }
     } on DioException catch (e) {
-      print("Register error: ${e.response?.data}"); // 👈 hatayı görmek için
+      print("Register error: ${e.response?.data}");
       throw Exception(e.response?.data ?? "Register failed");
     }
   }

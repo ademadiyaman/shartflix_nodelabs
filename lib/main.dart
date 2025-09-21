@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:jr_case_boilerplate/core/provider/photo_provider.dart';
-import 'package:jr_case_boilerplate/features/splash/view/splash_view.dart'; // 🔥 SplashView import edildi
-import 'firebase_options.dart'; // flutterfire cli ile gelir
+import 'package:jr_case_boilerplate/features/splash/view/splash_view.dart';
+import 'firebase_options.dart';
 
 
 void main() async {
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(390, 844), // Figma tasarım ölçüsü
+      designSize: const Size(390, 844),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: "JR Case Boilerplate",
           theme: ThemeData.dark(),
-          home: const SplashView(), // 🔥 İlk açılışta SplashView açılacak
+          home: const SplashView()
         );
       },
     );

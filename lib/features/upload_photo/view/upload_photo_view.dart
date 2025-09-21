@@ -60,7 +60,7 @@ class _UploadPhotoViewState extends State<UploadPhotoView> {
     return Scaffold(
       body: Stack(
         children: [
-          // 🔴 Gradient (arka plan)
+          // Gradient (arka plan)
           Container(
             width: size.width,
             height: size.height,
@@ -72,7 +72,7 @@ class _UploadPhotoViewState extends State<UploadPhotoView> {
               ),
             ),
           ),
-          // ✨ Shine Effect – Figma ölçüleri birebir
+          // Shine Effect
           Positioned(
             top: -21,
             left: 0,
@@ -85,7 +85,7 @@ class _UploadPhotoViewState extends State<UploadPhotoView> {
             ),
           ),
 
-          // 📌 SafeArea + içerik (her şeyin üstünde)
+          // SafeArea
           SafeArea(
             child: Padding(
               padding: AppPaddings.page,
@@ -104,13 +104,13 @@ class _UploadPhotoViewState extends State<UploadPhotoView> {
                           decoration: BoxDecoration(
                             color: Colors.black.withOpacity(0.4),
                             borderRadius: AppRadius.br16,
-                            border: Border.all(color: Colors.white24, width: 1),
+                            border: Border.all(color: AppColors.white24, width: 1),
                           ),
-                          child: const Center(
+                          child: Center(
                             child: Icon(
                               Icons.arrow_back,
                               size: AppSizes.backIcon,
-                              color: Colors.white,
+                              color: AppColors.white,
                             ),
                           ),
                         ),
@@ -123,10 +123,7 @@ class _UploadPhotoViewState extends State<UploadPhotoView> {
                       const Spacer(flex: 2),
                     ],
                   ),
-
                   AppGaps.vh(context, 0.05),
-
-                  // Profile Pic Container – 76x76, r:24
                   Padding(
                     padding: EdgeInsets.only(top: 70.h),
                     child: Center(
@@ -147,7 +144,6 @@ class _UploadPhotoViewState extends State<UploadPhotoView> {
                       ),
                     ),
                   ),
-
                   AppGaps.h12,
                   Text('fotografyukle', style: AppTextStyles.yukle).tr(),
                   AppGaps.h6,
@@ -164,7 +160,7 @@ class _UploadPhotoViewState extends State<UploadPhotoView> {
                       radius: const Radius.circular(32),
                       dashPattern: const [4, 4],
                       strokeWidth: 1,
-                      color: Colors.white24,
+                      color: AppColors.white24,
                       child: ClipRRect(
                         borderRadius: AppRadius.br32,
                         child: Container(
@@ -203,7 +199,7 @@ class _UploadPhotoViewState extends State<UploadPhotoView> {
                         height: AppSizes.closeBtn,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white, width: 1),
+                          border: Border.all(color: AppColors.white, width: 1),
                           color: Colors.black.withOpacity(0.5),
                         ),
                         child: Center(
@@ -211,7 +207,7 @@ class _UploadPhotoViewState extends State<UploadPhotoView> {
                             "assets/icons/xvector.png",
                             width: AppSizes.closeBtn,
                             height: AppSizes.closeBtn,
-                            color: Colors.white,
+                            color: AppColors.white,
                           ),
                         ),
                       ),
@@ -228,18 +224,18 @@ class _UploadPhotoViewState extends State<UploadPhotoView> {
                               if (states.contains(MaterialState.disabled)) {
                                 return const Color(
                                   0xFFE50914,
-                                ); // 🔴 Figma disabled kırmızı
+                                );
                               }
-                              return AppColors.redButton; // aktif kırmızı
+                              return AppColors.redButton;
                             }),
                         foregroundColor:
                             MaterialStateProperty.resolveWith<Color>((states) {
                               if (states.contains(MaterialState.disabled)) {
                                 return Colors.white.withOpacity(
                                   0.6,
-                                ); // disabled yazı rengi
+                                );
                               }
-                              return Colors.white; // aktif yazı rengi
+                              return Colors.white;
                             }),
                         shape: MaterialStateProperty.all(
                           RoundedRectangleBorder(
@@ -277,8 +273,8 @@ class _UploadPhotoViewState extends State<UploadPhotoView> {
                           color: _selectedImage == null
                               ? Colors.white.withOpacity(
                                   0.6,
-                                ) // disabled state için override
-                              : Colors.white,
+                                )
+                              : AppColors.white,
                         ),
                       ).tr(),
                     ),
@@ -288,7 +284,7 @@ class _UploadPhotoViewState extends State<UploadPhotoView> {
                     onTap: () {},
                     child: Text(
                       'atla',
-                      style: TextStyle(fontSize: 15, color: Colors.white70),
+                      style: TextStyle(fontSize: 15, color: AppColors.white70),
                     ).tr(),
                   ),
                   AppGaps.h12,

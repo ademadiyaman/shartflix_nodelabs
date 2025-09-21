@@ -16,6 +16,6 @@ class PhotoProvider extends ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString("photoUrl", url);
     _photoUrl = url;
-    notifyListeners(); // 🔥 tüm dinleyen widgetlar güncellenir
+    notifyListeners();
   }
 }

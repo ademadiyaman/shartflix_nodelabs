@@ -25,6 +25,7 @@ class AppPaddings {
   static double h10 = 10.h;
   static double h14 = 14.h;
   static double h15 = 15.h;
+  static double h16 = 16.h;
   static double h24 = 24.h;
   static double w1 = 81;
   static double jetonWidth = 110.w;
@@ -60,10 +61,10 @@ class AppPaddings {
   static Color favBgColor     = Colors.black.withOpacity(0.4);
 
   // HomeView özel layout değerleri
-  static double infoBottom   = 0.14.sp; // height * 0.14
-  static double infoSide     = 0.04.sp; // width * 0.04
+  static double infoBottom   = 0.14.sp;
+  static double infoSide     = 0.04.sp;
 
-  static double logoSize     = 40.w; // 40x40 px orantılı
+  static double logoSize     = 40.w; //
   static double rowGapW      = 0.01.sp;
 
   static double favBottomH   = 0.31.sp;

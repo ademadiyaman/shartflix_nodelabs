@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jr_case_boilerplate/core/constants/app_paddings.dart';
 import 'package:jr_case_boilerplate/core/constants/app_strings.dart';
 import 'package:jr_case_boilerplate/core/constants/app_text_styles.dart';
 import 'package:jr_case_boilerplate/features/auth/views/login_view.dart';
@@ -28,7 +29,7 @@ class _SplashViewState extends State<SplashView> {
       ),
     );
 
-    // 2.5 saniye sonra yönlendirme
+    // açılıs sonrası yönlendirme
     Future.delayed(const Duration(seconds: 2), () async {
       final prefs = await SharedPreferences.getInstance();
       final isLoggedIn = prefs.getBool("isLoggedIn") ?? false;
@@ -52,7 +53,7 @@ class _SplashViewState extends State<SplashView> {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          // 🔴 Arka plan gradient
+          // Arka plan gradient
           Container(
             width: size.width,
             height: size.height,
@@ -65,7 +66,7 @@ class _SplashViewState extends State<SplashView> {
             ),
           ),
 
-          // ✨ Shine effect
+          // Shine effect
           Positioned(
             top: -11,
             left: 0,
@@ -77,19 +78,18 @@ class _SplashViewState extends State<SplashView> {
             ),
           ),
 
-          // 🔹 Logo ve yazı
+          // Logo ve yazı
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Logo
                 Image.asset(
-                  "assets/images/logo.png", // gönderdiğin logo
+                  "assets/images/logo.png",
                   width: 84,
                   height: 84,
                 ),
-                const SizedBox(height: 16),
-
+                SizedBox(height: AppPaddings.h16),
                 // Uygulama adı
                 Text(
                   AppStrings.shartflix,

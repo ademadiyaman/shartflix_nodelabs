@@ -1,11 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jr_case_boilerplate/core/constants/app_colors.dart';
 import 'package:jr_case_boilerplate/core/constants/app_paddings.dart';
 import 'package:jr_case_boilerplate/core/constants/app_sizes.dart';
-import 'package:jr_case_boilerplate/core/constants/app_strings.dart';
 import 'package:jr_case_boilerplate/core/constants/app_text_styles.dart';
 
-class NavBarView extends StatelessWidget {
+class NavBarView extends StatefulWidget {
   final int currentIndex;
   final Function(int) onTap;
 
@@ -16,12 +17,20 @@ class NavBarView extends StatelessWidget {
   });
 
   @override
+  State<NavBarView> createState() => _NavBarViewState();
+}
+
+class _NavBarViewState extends State<NavBarView> {
+  @override
   Widget build(BuildContext context) {
+    // 🔑 locale'yi oku → dil değiştiğinde widget rebuild olacak
+    final locale = context.locale;
+
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
-      height: screenHeight * 0.12, // Navbar yüksekliği
+      height: screenHeight * 0.12,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
@@ -41,27 +50,26 @@ class NavBarView extends StatelessWidget {
             left: AppPaddings.left16,
             bottom: AppPaddings.navBottom,
             child: _buildNavButton(
-              label: 'navbar_anasayfa'.tr(),
-              iconPath: currentIndex == 0
+              label: 'navbar_anasayfa'.tr(), // 🌍 locale değişince güncellenir
+              iconPath: widget.currentIndex == 0
                   ? "assets/icons/home_active.png"
                   : "assets/icons/home_inactive.png",
-              isActive: currentIndex == 0,
-              onTap: () => onTap(0),
+              isActive: widget.currentIndex == 0,
+              onTap: () => widget.onTap(0),
               screenWidth: screenWidth,
             ),
           ),
-
           // Profil Butonu
           Positioned(
             right: AppPaddings.right16,
             bottom: AppPaddings.navBottom,
             child: _buildNavButton(
-              label: 'navbar_profil'.tr(),
-              iconPath: currentIndex == 1
+              label: 'navbar_profil'.tr(), // 🌍 locale değişince güncellenir
+              iconPath: widget.currentIndex == 1
                   ? "assets/icons/profile_active.png"
                   : "assets/icons/profile_inactive.png",
-              isActive: currentIndex == 1,
-              onTap: () => onTap(1),
+              isActive: widget.currentIndex == 1,
+              onTap: () => widget.onTap(1),
               screenWidth: screenWidth,
             ),
           ),
@@ -80,8 +88,8 @@ class NavBarView extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: AppSizes.figmaWidth, // ekranın %40’ı
-        height: AppSizes.figmaHeight, // sabit Figma yüksekliği
+        width: AppSizes.figmaWidth,
+        height: AppSizes.figmaHeight,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(42),
           gradient: isActive
@@ -91,17 +99,17 @@ class NavBarView extends StatelessWidget {
             end: Alignment.bottomRight,
           )
               : null,
-          color: isActive ? null : Colors.transparent,
+          color: isActive ? null : AppColors.transparent,
           border: Border.all(
-            color: isActive ? Colors.transparent : Colors.white,
+            color: isActive ? AppColors.white24 : AppColors.white,
             width: 0.31,
           ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(iconPath, width: 22, height: 22),
-            const SizedBox(width: 8),
+            Image.asset(iconPath, width: 22.sp, height: 22.sp),
+            SizedBox(width: AppPaddings.h10),
             Flexible(
               child: Text(
                 label,

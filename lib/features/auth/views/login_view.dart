@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jr_case_boilerplate/core/constants/app_colors.dart';
 import 'package:jr_case_boilerplate/core/constants/app_paddings.dart';
 import 'package:jr_case_boilerplate/core/constants/app_text_styles.dart';
 import 'package:jr_case_boilerplate/core/services/api_service.dart';
@@ -111,33 +112,31 @@ class _LoginViewState extends State<LoginView> {
                         // Email
                         TextFormField(
                           controller: _emailCtrl,
-                          style: const TextStyle(color: Colors.white, fontSize: 14),
+                          style: const TextStyle(color: AppColors.white, fontSize: 14),
                           decoration: InputDecoration(
                             hintText: 'eposta'.tr(),
                             hintStyle: AppTextStyles.eposta,
                             filled: true,
-                            fillColor: const Color(0xFF1C1C1C), // Figma'daki koyu arka plan
+                            fillColor: const Color(0xFF1C1C1C),
                             contentPadding: const EdgeInsets.symmetric(
-                              vertical: 16, // Top-Bottom 16px
-                              horizontal: 20, // Left-Right 20px
+                              vertical: 16,
+                              horizontal: 20,
                             ),
-
-                            // 🔹 Prefix Icon
+                            // Prefix Icon
                             prefixIcon: Padding(
                               padding: const EdgeInsets.only(left: 20, right: 12),
                               child: Image.asset(
                                 "assets/icons/Mail.png",
                                 width: 20,
                                 height: 20,
-                                color: Colors.white70,
+                                color: AppColors.white,
                               ),
                             ),
                             prefixIconConstraints: const BoxConstraints(
                               minWidth: 40,
                               minHeight: 40,
                             ),
-
-                            // 🔹 Borderlar
+                            // Borderlar
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18), // Radius 18px
                               borderSide: BorderSide(
@@ -155,7 +154,7 @@ class _LoginViewState extends State<LoginView> {
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18),
                               borderSide: const BorderSide(
-                                color: Colors.red, // Focus halinde kırmızı highlight
+                                color: Colors.red,
                                 width: 1,
                               ),
                             ),
@@ -180,14 +179,14 @@ class _LoginViewState extends State<LoginView> {
                               horizontal: 20.sp, // left-right
                             ),
 
-                            // 🔹 Prefix Icon
+                            // Prefix Icon
                             prefixIcon: Padding(
                               padding: EdgeInsets.only(left: AppPaddings.left20, right: AppPaddings.right12),
                               child: Image.asset(
                                 "assets/icons/Lock.png",
                                 width: 20.sp,
                                 height: 20.sp,
-                                color: Colors.white70,
+                                color: AppColors.white70,
                               ),
                             ),
                             prefixIconConstraints: const BoxConstraints(
@@ -195,7 +194,7 @@ class _LoginViewState extends State<LoginView> {
                               minHeight: 40,
                             ),
 
-                            // 🔹 Suffix Icon (göster/gizle)
+                            // Suffix Icon (göster/gizle)
                             suffixIcon: IconButton(
                               icon: Image.asset(
                                 _obscureText
@@ -203,7 +202,7 @@ class _LoginViewState extends State<LoginView> {
                                     : "assets/icons/See.png",
                                 width: 20,
                                 height: 20,
-                                color: Colors.white70,
+                                color: AppColors.white70,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -212,9 +211,9 @@ class _LoginViewState extends State<LoginView> {
                               },
                             ),
 
-                            // 🔹 Borderlar
+                            //Borderlar
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(18), // Radius = 18px
+                              borderRadius: BorderRadius.circular(18),
                               borderSide: BorderSide(
                                 color: Colors.white.withOpacity(0.2),
                                 width: 1,
@@ -230,7 +229,7 @@ class _LoginViewState extends State<LoginView> {
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18),
                               borderSide: const BorderSide(
-                                color: Colors.red, // Focus olduğunda kırmızı (Figma’ya göre ayarlanabilir)
+                                color: Colors.red,
                                 width: 1,
                               ),
                             ),
@@ -255,7 +254,6 @@ class _LoginViewState extends State<LoginView> {
                           SizedBox(height: AppPaddings.h5),
 
                         // Giriş Yap Butonu
-
                         CustomPrimaryButton(
                           text: 'girisyap'.tr(),
                           onPressed: () async {
@@ -368,7 +366,7 @@ class _LoginViewState extends State<LoginView> {
         height: 55,
         decoration: BoxDecoration(
           color: Colors.grey.shade900,
-          border: Border.all(color: Colors.white24, width: 1),
+          border: Border.all(color: AppColors.white70, width: 1),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Center(

@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:jr_case_boilerplate/core/constants/app_colors.dart';
 import 'package:jr_case_boilerplate/core/constants/app_paddings.dart';
 import 'package:jr_case_boilerplate/core/constants/app_strings.dart';
 import 'package:jr_case_boilerplate/core/constants/app_text_styles.dart';
 import 'package:jr_case_boilerplate/core/models/movie.dart';
 import 'package:jr_case_boilerplate/core/services/api_service.dart';
-import 'package:jr_case_boilerplate/features/auth/views/login_view.dart';
 import 'package:jr_case_boilerplate/features/nav_bar/view/nav_bar_view.dart';
 import 'package:jr_case_boilerplate/features/profile/view/profile_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,14 +27,13 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.background,
       body: Stack(
         children: [
           _pages[_currentIndex],
-// 🔽 Bottom Navigation
+          // Bottom Navigation
           Positioned(
             bottom: 0,
             left: 0,
@@ -46,7 +45,6 @@ class _HomeViewState extends State<HomeView> {
               },
             ),
           ),
-
         ],
       ),
     );
@@ -94,7 +92,6 @@ class _HomeContentState extends State<_HomeContent> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
 
     return FutureBuilder<List<Movie>>(
       future: _moviesFuture,
@@ -125,14 +122,14 @@ class _HomeContentState extends State<_HomeContent> {
 
                 return Stack(
                   children: [
-                    // 🎬 Arka plan posteri
+                    // Arka plan resimleri
                     Positioned.fill(
                       child: Image.network(
                         movie.posterUrl ?? "https://via.placeholder.com/400x600",
                         fit: BoxFit.cover,
                       ),
                     ),
-                    // ❤️ Favori Butonu
+                    // Favori Butonu
                     Positioned(
                       bottom: height * 0.25,
                       right: AppPaddings.favRight,
@@ -167,7 +164,7 @@ class _HomeContentState extends State<_HomeContent> {
                         },
                       ),
                     ),
-                    // 📌 Film Bilgileri
+                    // Film Bilgileri
                     Positioned(
                       bottom: height * 0.13,
                       left: AppPaddings.left16,
@@ -202,16 +199,13 @@ class _HomeContentState extends State<_HomeContent> {
                                         style: AppTextStyles.anasayfadescription,
                                       ),
                                       maxLines: 2,
-                                      textDirection: Directionality.of(context), // 👈 ÖNEMLİ
-                                      /// HALA AYNI HATAYI VERİYO tr() easylocalization ekledikten sonra veriyor bu hatayı
+                                      textDirection: Directionality.of(context),
+
                                     )..layout(maxWidth: constraints.maxWidth);
 
-                                    // Eğer sığıyorsa direkt yaz
                                     if (tp.didExceedMaxLines == false) {
                                       return Text(description, style: AppTextStyles.anasayfadescription);
                                     }
-
-                                    // Metni 2 satıra sığdırabilecek kadar kes
                                     int endIndex = tp.getPositionForOffset(
                                       Offset(180, tp.height),
                                     ).offset;
@@ -231,7 +225,6 @@ class _HomeContentState extends State<_HomeContent> {
                                             style: AppTextStyles.devaminioku,
                                             recognizer: TapGestureRecognizer()
                                               ..onTap = () {
-
                                               },
                                           ),
                                         ],

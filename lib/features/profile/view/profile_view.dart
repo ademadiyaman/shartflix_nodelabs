@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jr_case_boilerplate/core/constants/app_colors.dart';
 import 'package:jr_case_boilerplate/core/constants/app_paddings.dart';
 import 'package:jr_case_boilerplate/core/constants/app_strings.dart';
 import 'package:jr_case_boilerplate/core/constants/app_text_styles.dart';
@@ -111,7 +113,7 @@ class _ProfileViewState extends State<ProfileView> {
                                   "assets/icons/vector.png",
                                   height: 15.83,
                                   width: 14.3,
-                                  color: Colors.white,
+                                  color: AppColors.white,
                                 ),
                                 const SizedBox(width: 6),
                                 Text(
@@ -125,7 +127,6 @@ class _ProfileViewState extends State<ProfileView> {
                       ],
                     ),
                   ),
-                  // Çizgi + Profil Row
                   Container(
                     width: double.infinity,
                     decoration: const BoxDecoration(
@@ -257,8 +258,8 @@ class _ProfileViewState extends State<ProfileView> {
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.network(
                                       movie.posterUrl,
-                                      width: 169,
-                                      height: 196,
+                                      width: 169.sp,
+                                      height: 196.sp,
                                       fit: BoxFit.cover,
                                       errorBuilder: (context, error, stackTrace) {
                                         return Image.asset("assets/images/placeholder.png", fit: BoxFit.cover);
@@ -288,7 +289,7 @@ class _ProfileViewState extends State<ProfileView> {
                           icon: Icons.language,
                           label: "dildegistir".tr(),
                           onTap: () => _changeLanguage(context),
-                          backgroundColor: Colors.blue, // farklı renk olsun
+                          backgroundColor: AppColors.blue,
                         ),
                         ExitLanguageCustomButton(
                           icon: Icons.logout,
@@ -309,6 +310,7 @@ class _ProfileViewState extends State<ProfileView> {
             left: 0,
             right: 0,
             child: NavBarView(
+              key: ValueKey(context.locale), // 👈 dil değişince NavBar da rebuild olur
               currentIndex: _currentIndex,
               onTap: (index) {
                 if (index != _currentIndex) {
@@ -324,7 +326,7 @@ class _ProfileViewState extends State<ProfileView> {
       ),
     );
   }
-
+  // DİL DEĞİŞTİRME METHODU --------------------------------
   Future<void> _changeLanguage(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     final currentLocale = context.locale;

@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:jr_case_boilerplate/core/constants/app_colors.dart';
 import 'package:jr_case_boilerplate/core/constants/app_paddings.dart';
 import 'package:jr_case_boilerplate/core/constants/app_text_styles.dart';
 import 'package:jr_case_boilerplate/core/services/api_service.dart';
 import 'package:jr_case_boilerplate/core/widgets/buttons/custom_primary_button.dart';
-import 'package:jr_case_boilerplate/features/home/view/home_view.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -22,7 +22,7 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   void initState() {
     super.initState();
-    // Status bar şeffaf + ikonları beyaz
+    // Status bar şeffaf
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -48,7 +48,7 @@ class _RegisterViewState extends State<RegisterView> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.background,
       body: Stack(
         children: [
           // Gradient (arka plan)
@@ -97,7 +97,6 @@ class _RegisterViewState extends State<RegisterView> {
                   style: AppTextStyles.kayit,
                 ).tr(),
                   SizedBox(height: AppPaddings.h20),
-
                 // Form
                 Form(
                   key: _formKey,
@@ -106,26 +105,24 @@ class _RegisterViewState extends State<RegisterView> {
                       // Ad Soyad
                       TextFormField(
                         controller: _nameCtrl,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: AppColors.white),
                         decoration: _inputDecoration('adsoyad'.tr(), "assets/icons/profil.png"),
                         validator: (val) => val != null && val.isNotEmpty ? null : "Ad Soyad giriniz",
                       ),
                         SizedBox(height: AppPaddings.h15),
-
                       // E-posta
                       TextFormField(
                         controller: _emailCtrl,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: AppColors.white),
                         decoration: _inputDecoration("eposta".tr(), "assets/icons/Mail.png"),
                         validator: (val) => val != null && val.contains("@") ? null : 'gecersizeposta'.tr(),
                       ),
                         SizedBox(height: AppPaddings.h15),
-
                       // Şifre
                       TextFormField(
                         controller: _passwordCtrl,
                         obscureText: _obscurePassword,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: AppColors.white),
                         decoration: _inputDecoration(
                           'sifre'.tr(),
                           "assets/icons/Lock.png",
@@ -148,7 +145,7 @@ class _RegisterViewState extends State<RegisterView> {
                       TextFormField(
                         controller: _confirmPasswordCtrl,
                         obscureText: _obscureConfirmPassword,
-                        style: const TextStyle(color: Colors.white, fontSize: 14),
+                        style: const TextStyle(color: AppColors.white, fontSize: 14),
                         decoration: _inputDecoration(
                           'sifretekrar'.tr(),
                           "assets/icons/Lock.png",
@@ -166,9 +163,7 @@ class _RegisterViewState extends State<RegisterView> {
                         ),
                         validator: (val) => val == _passwordCtrl.text ? null : 'sifreuyusmuyor'.tr(),
                       ),
-
                         SizedBox(height: AppPaddings.h15),
-
                       // Kullanıcı sözleşmesi
                       Row(
                         children: [
@@ -191,7 +186,7 @@ class _RegisterViewState extends State<RegisterView> {
                                   TextSpan(
                                     text: 'kabulediyorum'.tr(),
                                     style: const TextStyle(
-                                      color: Colors.red,
+                                      color: AppColors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -202,7 +197,6 @@ class _RegisterViewState extends State<RegisterView> {
                         ],
                       ),
                         SizedBox(height: AppPaddings.h20),
-
                       // Kaydol Butonu
                       CustomPrimaryButton(
                         text: 'kayitol'.tr(),
@@ -214,15 +208,12 @@ class _RegisterViewState extends State<RegisterView> {
                                   _emailCtrl.text,
                                   _passwordCtrl.text,
                                 );
-
                                 if (!mounted) return;
-
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(content: Text(
                                       'kayitbasarili${result?["user"]["email"]}')
                                       .tr()),
                                 );
-
                                 Navigator.pop(
                                     context); // Geri Login sayfasına dön
                               } catch (e) {
@@ -234,12 +225,10 @@ class _RegisterViewState extends State<RegisterView> {
                             }
                           }
                       ),
-
                     ],
                   ),
                 ),
                   SizedBox(height: AppPaddings.h20),
-
                 // Sosyal Medya Butonları
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -256,8 +245,7 @@ class _RegisterViewState extends State<RegisterView> {
 
                       final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
 
-                      // ✅ Firebase ID Token al
-                      final idToken = await userCredential.user?.getIdToken();
+                       final idToken = await userCredential.user?.getIdToken();
 
                       if (idToken != null) {
                         final api = ApiService();
@@ -271,7 +259,6 @@ class _RegisterViewState extends State<RegisterView> {
                         }
                       }
                     }),
-
                       SizedBox(width: AppPaddings.h20),
                     _socialButton("assets/icons/Apple.png", () {}),
                       SizedBox(width: AppPaddings.h20),
@@ -279,7 +266,6 @@ class _RegisterViewState extends State<RegisterView> {
                   ],
                 ),
                   SizedBox(height: AppPaddings.h20),
-
                 // Alt yazı
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -301,7 +287,6 @@ class _RegisterViewState extends State<RegisterView> {
       ),
     );
   }
-
   // Google ile Giriş (Backend'de endpoint olmadığı için tamamlanmadı!)
   Future<UserCredential?> _signInWithGoogle() async {
     try {
@@ -324,7 +309,6 @@ class _RegisterViewState extends State<RegisterView> {
       return null;
     }
   }
-
 // Ortak input
   InputDecoration _inputDecoration(String hint, String iconPath, {Widget? suffix}) {
     return InputDecoration(
@@ -367,14 +351,12 @@ class _RegisterViewState extends State<RegisterView> {
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(18),
         borderSide: const BorderSide(
-          color: Colors.red, // Focus olduğunda kırmızı highlight (Figma’ya göre değiştirebilirsin)
+          color: Colors.red,
           width: 1,
         ),
       ),
     );
   }
-
-
   // Sosyal medya butonu
   Widget _socialButton(String assetPath, VoidCallback onTap) {
     return GestureDetector(
@@ -383,8 +365,8 @@ class _RegisterViewState extends State<RegisterView> {
         width: 50,
         height: 50,
         decoration: BoxDecoration(
-          color: Colors.black,
-          border: Border.all(color: Colors.white24),
+          color: AppColors.background,
+          border: Border.all(color: AppColors.white24),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Center(
