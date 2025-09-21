@@ -23,7 +23,6 @@ class NavBarView extends StatefulWidget {
 class _NavBarViewState extends State<NavBarView> {
   @override
   Widget build(BuildContext context) {
-    // 🔑 locale'yi oku → dil değiştiğinde widget rebuild olacak
     final locale = context.locale;
 
     final screenWidth = MediaQuery.of(context).size.width;
