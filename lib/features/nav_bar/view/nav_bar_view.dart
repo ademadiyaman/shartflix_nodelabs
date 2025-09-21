@@ -50,7 +50,7 @@ class _NavBarViewState extends State<NavBarView> {
             left: AppPaddings.left16,
             bottom: AppPaddings.navBottom,
             child: _buildNavButton(
-              label: 'navbar_anasayfa'.tr(), // 🌍 locale değişince güncellenir
+              label: 'navbar_anasayfa'.tr(),
               iconPath: widget.currentIndex == 0
                   ? "assets/icons/home_active.png"
                   : "assets/icons/home_inactive.png",
@@ -64,7 +64,7 @@ class _NavBarViewState extends State<NavBarView> {
             right: AppPaddings.right16,
             bottom: AppPaddings.navBottom,
             child: _buildNavButton(
-              label: 'navbar_profil'.tr(), // 🌍 locale değişince güncellenir
+              label: 'navbar_profil'.tr(),
               iconPath: widget.currentIndex == 1
                   ? "assets/icons/profile_active.png"
                   : "assets/icons/profile_inactive.png",
